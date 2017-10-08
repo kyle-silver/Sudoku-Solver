@@ -19,27 +19,7 @@ The script runs off of the command line, and takes the name of the file containi
 - Each board must have a title
 - There is no limit to the number of boards you can put in a single file
 
-
-    [Board 1 Name]  
-    003020600
-    900305001
-    001806400
-    008102900
-    700000008
-    006708200
-    002609500
-    800203009
-    005010300
-    [Board 2 Name]
-    200080300
-    060070084
-    030500209
-    000105408
-    000000000
-    402706000
-    301007040
-    720040060
-    004010003
+Check out the included test cases for an example.
 
 The script will output a new text file containing the solved version of each board, or in the event that the board could not be solved, its last guess at the board along with an error message. The program will halt after the board is solved, or after 10,000 guesses.
 

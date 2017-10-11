@@ -23,6 +23,11 @@ __github__ = "https://github.com/kyleAsilver"
 #          the point when that guess was made, and guess something different
 # ####################################################################################
 
+# for dealing with i/o
+import sys
+import os
+
+
 class Board(object):
     """contains an internal representation of the board, as well as every method
        needed to solve an incomplete board"""
@@ -33,8 +38,8 @@ class Board(object):
 
     def __init__(self, input_lines):
         """initialize the board"""
-        self.board = [] # internal representation of the board
-        self.stack = [] # used for making guesses
+        self.board = []  # internal representation of the board
+        self.stack = []  # used for making guesses
         for i in input_lines:
             as_int = list(map(int, i))
             self.board.append(as_int)
@@ -50,7 +55,7 @@ class Board(object):
     def to_string(self):
         """returns a string representation of the board"""
         board_str = ""
-        for i in range(0,9):
+        for i in range(0, 9):
             board_str += ''.join(str(e) + " " for e in self.get_row(i))
             board_str += '\n'
 
@@ -74,7 +79,7 @@ class Board(object):
 
         cell = []
         for i in range(0, 3):
-            cell.extend(self.get_row(meta_row_index + i)[meta_col_index : meta_col_index + 3])
+            cell.extend(self.get_row(meta_row_index + i)[meta_col_index: meta_col_index + 3])
 
         return cell
 
@@ -147,7 +152,7 @@ class Board(object):
         cell = self.get_cell(self.get_meta_cell_index(i, j))
 
         # list of potential values
-        results = [x for x in range (1, 10)]
+        results = [x for x in range(1, 10)]
 
         # removing values
         for i in range(1, 10):
@@ -248,8 +253,8 @@ class Board(object):
 
     def is_equal_to_board(self, other_board):
         """tests to see if two boards are equal"""
-        for i in range(0,9):
-            for j in range(0,9):
+        for i in range(0, 9):
+            for j in range(0, 9):
                 if self.board[i][j] != other_board[i][j]:
                     return False
         return True
@@ -257,7 +262,7 @@ class Board(object):
     def duplicate_board(self):
         """returns a board with the same values as the current board"""
         new_board = [[0 for j in range(0, 9)]
-                       for i in range(0, 9)]
+                     for i in range(0, 9)]
         for i in range(0, 9):
             for j in range(0, 9):
                 new_board[i][j] = self.board[i][j]
@@ -267,7 +272,7 @@ class Board(object):
     def copy_board(self, other_board):
         """returns a copy of an arbitrary board"""
         new_board = [[0 for j in range(0, 9)]
-                       for i in range(0, 9)]
+                     for i in range(0, 9)]
         for i in range(0, 9):
             for j in range(0, 9):
                 new_board[i][j] = other_board[i][j]
@@ -364,9 +369,6 @@ class Board(object):
 #       CALCULATIONS
 # ####################################################################################
 
-# for dealing with i/o
-import sys
-import os
 
 # opening and reading the file
 try:
@@ -382,7 +384,7 @@ for i in range(0, len(lines), 10):
     boards.append(Board(input_lines))
 
 # solving the boards and outputting them to a text file
-output_file_name = os.path.splitext(sys.argv[1])[0]+'_solutions.txt'
+output_file_name = os.path.splitext(sys.argv[1])[0] + '_solutions.txt'
 output_file = open(output_file_name, 'w')
 
 for i in range(0, len(boards)):
